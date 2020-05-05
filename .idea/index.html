@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="styles.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+
+    <title>Quiz App</title>
+</head>
+<body>
+<div class="container">
+    <div id="question-container" class="hide">
+        <div id="question">Question</div>
+        <div id="answer-input">
+            <input type="number" id ="answer">
+        </div>
+
+        <div id="timer-points-container">
+
+            <div id ="points"></div>
+        </div>
+        <div id="confirm">
+            <button id="confirm-btn">Zatwierdź</button>
+            <button id="confirm-btn" class="hide">Następne</button>
+        </div>
+        <div><br>
+            <div>Pozostały czas:</div>
+            <progress value="0" max="15" id="progressBar"></progress>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="start-simple-btn" class="start-btn btn">Prosty</button>
+        <button id="start-normal-btn" class="start-btn btn">Normalny</button>
+        <button id="start-hard-btn" class="start-btn btn">Trudny</button>
+        <button id="next-btn" class="next-btn btn hide">Next</button>
+    </div>
+</div>
+</body>
+</html>

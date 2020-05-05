@@ -7,25 +7,32 @@ const points = document.getElementById('points')
 const timer = document.getElementById('timer')
 const question = document.getElementById('question')
 var answer = document.getElementById('answer')
-let gamesNumber = 1;
+let gamesNumber = 1
 startSimpleButton.addEventListener('click', startSimpleGame)
 confirmButton.addEventListener('click', validate)
 let liczba1 = Math.floor(Math.random() * 9)+1
 let liczba2 = Math.floor(Math.random() * 9)+1
 let iloczyn = liczba1*liczba2
-let punkty = 0;
-var downloadTimer;
+let punkty = 0
+var downloadTimer
 
 function startSimpleGame() {
-    let timeleft = 15;
+    let timeleft = 15
     clearInterval(downloadTimer)
     downloadTimer = setInterval(function(){
         if(timeleft <= 0){
             clearInterval(downloadTimer);
+            alert("Czas minął")
+            if(gamesNumber==10){
+                    alert("Koniec gry.\nZdobyłeś: " + punkty + " punktów!")
+                    window.location.reload(true)
+            } else
+                gamesNumber++
+            startSimpleGame()
         }
-        document.getElementById("progressBar").value = 15 - timeleft;
-        timeleft -= 1;
-    }, 1000);
+        document.getElementById("progressBar").value = 15 - timeleft
+        timeleft -= 1
+    }, 1000)
     liczba1 = Math.floor(Math.random() * 9)+1
     liczba2 = Math.floor(Math.random() * 9)+1
     iloczyn = liczba2*liczba1

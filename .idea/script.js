@@ -38,7 +38,7 @@ function startSimpleGame() {
     iloczyn = liczba2*liczba1
     hideStartMenu();
     let question = document.getElementById('question')
-    question.innerText = "Ile to jest...\n" + liczba1 + " * " + liczba2
+    question.innerText = "Ile to jest...\n\n" + liczba1 + " * " + liczba2
     points.innerText = "Ilość punktów: " + punkty
 }
 function validate(){

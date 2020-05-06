@@ -10,22 +10,22 @@ var answer = document.getElementById('answer')
 let gamesNumber = 1
 startSimpleButton.addEventListener('click', startSimpleGame)
 confirmButton.addEventListener('click', validate)
-let liczba1 = Math.floor(Math.random() * 9)+1
-let liczba2 = Math.floor(Math.random() * 9)+1
-let iloczyn = liczba1*liczba2
+let liczba1 = Math.floor(Math.random() * 9) + 1
+let liczba2 = Math.floor(Math.random() * 9) + 1
+let iloczyn = liczba1 * liczba2
 let punkty = 0
 var downloadTimer
 
 function startSimpleGame() {
     let timeleft = 15
     clearInterval(downloadTimer)
-    downloadTimer = setInterval(function(){
-        if(timeleft <= 0){
+    downloadTimer = setInterval(function () {
+        if (timeleft <= 0) {
             clearInterval(downloadTimer);
             alert("Czas minął")
-            if(gamesNumber==10){
-                    alert("Koniec gry.\nZdobyłeś: " + punkty + " punktów!")
-                    window.location.reload(true)
+            if (gamesNumber == 10) {
+                alert("Koniec gry.\nZdobyłeś: " + punkty + " punktów!")
+                window.location.reload(true)
             } else
                 gamesNumber++
             startSimpleGame()
@@ -33,20 +33,21 @@ function startSimpleGame() {
         document.getElementById("progressBar").value = 15 - timeleft
         timeleft -= 1
     }, 1000)
-    liczba1 = Math.floor(Math.random() * 9)+1
-    liczba2 = Math.floor(Math.random() * 9)+1
-    iloczyn = liczba2*liczba1
+    liczba1 = Math.floor(Math.random() * 9) + 1
+    liczba2 = Math.floor(Math.random() * 9) + 1
+    iloczyn = liczba2 * liczba1
     hideStartMenu();
     let question = document.getElementById('question')
     question.innerText = "Ile to jest...\n\n" + liczba1 + " * " + liczba2
     points.innerText = "Ilość punktów: " + punkty
 }
-function validate(){
+
+function validate() {
     var wynik = Number(answer.value)
-    if(gamesNumber==10){
-        if (wynik === iloczyn){
+    if (gamesNumber == 10) {
+        if (wynik === iloczyn) {
             alert("Dobra odpowiedź")
-            punkty+=10
+            punkty += 10
             points.innerText = "Ilość punktów: " + punkty
             alert("Koniec gry.\nZdobyłeś: " + punkty + " punktów!")
             window.location.reload(true);
@@ -56,18 +57,20 @@ function validate(){
             alert("Koniec gry.\nZdobyłeś: " + punkty + " punktów!")
             window.location.reload(true);
         }
-    } else
-        gamesNumber++
-    if (wynik === iloczyn){
-        alert("Dobra odpowiedź")
-        punkty+=10
-        points.innerText = "Ilość punktów: " + punkty
     } else {
-        alert("Zła odpowiedź")
+        gamesNumber++
+        if (wynik === iloczyn) {
+            alert("Dobra odpowiedź")
+            punkty += 10
+            points.innerText = "Ilość punktów: " + punkty
+        } else {
+            alert("Zła odpowiedź")
+        }
     }
-    answer.value=""
+    answer.value = ""
     startSimpleGame()
 }
+
 function hideStartMenu() {
     startSimpleButton.classList.add('hide')
     startNormalButton.classList.add('hide')

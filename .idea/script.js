@@ -18,19 +18,27 @@ let helper
 //całkowita liczba gier
 let gamesCount
 confirmButton.addEventListener('click', validate)
+
 let liczba1 = Math.floor(Math.random() * 9) + 1
 let liczba2 = Math.floor(Math.random() * 9) + 1
 let iloczyn = liczba1 * liczba2
 let punkty = 0
 //pozostały czas
 var downloadTimer
+var timeleft
+
+answer.addEventListener('keyup',function(e){
+    if (e.keyCode === 13) {
+        validate()
+    }
+})
 
 function startSimpleGame() {
     document.getElementById("progressBar2").classList.add('hide')
     document.getElementById("progressBar3").classList.add('hide')
     helper = 1
     gamesCount = 10
-    var timeleft = 15
+    timeleft = 15
     clearInterval(downloadTimer)
     downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
@@ -60,7 +68,7 @@ function startNormalGame() {
     gamesCount = 15
     document.getElementById("progressBar1").classList.add('hide')
     document.getElementById("progressBar3").classList.add('hide')
-    var timeleft = 10
+    timeleft = 10
     clearInterval(downloadTimer)
     downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
@@ -83,6 +91,7 @@ function startNormalGame() {
     let question = document.getElementById('question')
     question.innerText = "Ile to jest...\n\n" + liczba1 + " * " + liczba2
     points.innerText = "Ilość punktów: " + punkty
+
 }
 
 function startHardGame() {
@@ -90,7 +99,7 @@ function startHardGame() {
     gamesCount = 20
     document.getElementById("progressBar1").classList.add('hide')
     document.getElementById("progressBar2").classList.add('hide')
-    var timeleft = 5
+    timeleft = 5
     clearInterval(downloadTimer)
     downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
@@ -133,7 +142,12 @@ function validate() {
         gamesNumber++
         if (wynik === iloczyn) {
             alert("Dobra odpowiedź")
-            punkty += 10
+            if (helper == 1)
+                punkty += 10
+            else if (helper == 2)
+                punkty += (10 - Math.floor((10 - timeleft) / 2))
+            else if (helper == 3)
+                punkty += (10 - Math.floor((5 - timeleft) * 2))
             points.innerText = "Ilość punktów: " + punkty
         } else {
             alert("Zła odpowiedź")
@@ -155,3 +169,4 @@ function hideStartMenu() {
     questionContainer.classList.remove('hide')
     confirmButton.classList.remove('hide')
 }
+
